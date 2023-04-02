@@ -63,6 +63,7 @@ const RegisterForm = ({
               label="Email Address"
               name="email"
               autoComplete="email"
+              onBlur={handleBlur}
               error={touched.email && Boolean(errors.email)}
               helperText={touched.email && errors.email}
             />
