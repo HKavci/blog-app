@@ -37,10 +37,34 @@ const RegisterForm = ({
   const [showPassword, setShowPassword] = useState(false);
   const handleTogglePasswordVisibility = () => setShowPassword((show) => !show);
 
+  const [showPassword2, setShowPassword2] = useState(false);
+  const handleTogglePasswordVisibility2 = () => setShowPassword2((show) => !show);
+
   return (
     <>
       <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
         <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              autoComplete="given-name"
+              name="first_name"
+              required
+              fullWidth
+              id="first_name"
+              label="First Name"
+              autoFocus
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              fullWidth
+              id="last_name"
+              label="Last Name"
+              name="last_name"
+              autoComplete="family-name"
+            />
+          </Grid>
           <Grid item xs={12}>
             <TextField
               name="username"
@@ -49,7 +73,6 @@ const RegisterForm = ({
               fullWidth
               id="username"
               label="User Name"
-              autoFocus
               error={touched.username && Boolean(errors.username)}
               helperText={touched.username && errors.username}
             />
@@ -94,6 +117,32 @@ const RegisterForm = ({
                       edge="end"
                     >
                       {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              fullWidth
+              name="password2"
+              label="Confirm Password"
+              type={showPassword2 ? "text" : "password"}
+              id="password2"
+              autoComplete="new-password"
+              error={touched.password2 && Boolean(errors.password2)}
+              helperText={touched.password2 && errors.password2}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleTogglePasswordVisibility2}
+                      edge="end"
+                    >
+                      {showPassword2 ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
                 ),

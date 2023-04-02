@@ -26,6 +26,7 @@ export default function Register() {
     });
   };
 
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -47,10 +48,9 @@ export default function Register() {
           <Formik
             initialValues={{ username: "", email: "", password: "" }}
             validationSchema={registerSchemas}
-            onSubmit={(values, { setSubmitting }) => {
+            onSubmit={(values, actions) => {
               setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
+                actions.setSubmitting(false);
               }, 400);
             }}
             component={(props) => <RegisterForm {...props} />}
