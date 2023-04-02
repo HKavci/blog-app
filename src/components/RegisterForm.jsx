@@ -1,8 +1,6 @@
 import {
   Box,
   Button,
-  Checkbox,
-  FormControlLabel,
   Grid,
   InputAdornment,
   Link,
@@ -15,8 +13,20 @@ import { object, string } from "yup";
 import { useState } from "react";
 
 export const registerSchemas = object({
-  email: string().email().required(),
+  first_name: string().max(20).required(),
+  last_name: string().max(20).required(),
+  email: string()
+    .email("Please enter a valid email")
+    .required("Email is required"),
   password: string()
+    .required()
+    .min(8)
+    .max(20)
+    .matches(/\d+/)
+    .matches(/[a-z]/)
+    .matches(/[A-Z]/)
+    .matches(/[!,?{}><%&$#£+-.]/),
+  password2: string()
     .required()
     .min(8)
     .max(20)
@@ -38,7 +48,8 @@ const RegisterForm = ({
   const handleTogglePasswordVisibility = () => setShowPassword((show) => !show);
 
   const [showPassword2, setShowPassword2] = useState(false);
-  const handleTogglePasswordVisibility2 = () => setShowPassword2((show) => !show);
+  const handleTogglePasswordVisibility2 = () =>
+    setShowPassword2((show) => !show);
 
   return (
     <>
@@ -46,66 +57,87 @@ const RegisterForm = ({
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <TextField
-              autoComplete="given-name"
-              name="first_name"
-              required
+              autoFocus
               fullWidth
+              name="first_name"
               id="first_name"
               label="First Name"
-              autoFocus
+              onChange={handleChange}
+              value={values.first_name}
+              onBlur={handleBlur}
+              helperText={touched.first_name && errors.first_name}
+              error={touched.first_name && Boolean(errors.first_name)}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
-              required
               fullWidth
               id="last_name"
               label="Last Name"
               name="last_name"
-              autoComplete="family-name"
+              onChange={handleChange}
+              value={values.last_name}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               name="username"
               type="text"
-              required
               fullWidth
               id="username"
               label="User Name"
+              onChange={handleChange}
+              value={values.username}
               error={touched.username && Boolean(errors.username)}
               helperText={touched.username && errors.username}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
-              required
               fullWidth
               type="email"
               id="email"
               label="Email Address"
               name="email"
-              autoComplete="email"
+              onChange={handleChange}
+              value={values.email}
               onBlur={handleBlur}
               error={touched.email && Boolean(errors.email)}
               helperText={touched.email && errors.email}
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField fullWidth id="image" label="Image" name="image" />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField fullWidth id="bio" label="Bio" name="bio" />
+            <TextField
+              fullWidth
+              type="url"
+              id="image"
+              label="Image"
+              name="image"
+              onChange={handleChange}
+              value={values.image}
+            />
           </Grid>
           <Grid item xs={12}>
             <TextField
-              required
+              fullWidth
+              type="text"
+              id="bio"
+              label="Bio"
+              name="bio"
+              onChange={handleChange}
+              value={values.bio}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
               fullWidth
               name="password"
               label="Password"
               type={showPassword ? "text" : "password"}
               id="password"
-              autoComplete="new-password"
+              onChange={handleChange}
+              value={values.password}
+              onBlur={handleBlur}
               error={touched.password && Boolean(errors.password)}
               helperText={touched.password && errors.password}
               InputProps={{
@@ -125,13 +157,14 @@ const RegisterForm = ({
           </Grid>
           <Grid item xs={12}>
             <TextField
-              required
               fullWidth
               name="password2"
               label="Confirm Password"
               type={showPassword2 ? "text" : "password"}
               id="password2"
-              autoComplete="new-password"
+              onChange={handleChange}
+              value={values.password2}
+              onBlur={handleBlur}
               error={touched.password2 && Boolean(errors.password2)}
               helperText={touched.password2 && errors.password2}
               InputProps={{
@@ -150,12 +183,7 @@ const RegisterForm = ({
             />
           </Grid>
         </Grid>
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}
-        >
+        <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
           Sign Up
         </Button>
         <Grid container justifyContent="center">

@@ -13,10 +13,13 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Formik } from "formik";
 import RegisterForm, { registerSchemas } from "../components/RegisterForm";
+import useAuthCall from "../hooks/useAuthCall";
 
 const theme = createTheme();
 
 export default function Register() {
+  const { register } = useAuthCall();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -25,7 +28,6 @@ export default function Register() {
       password: data.get("password"),
     });
   };
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -46,12 +48,21 @@ export default function Register() {
             Sign up
           </Typography>
           <Formik
-            initialValues={{ username: "", email: "", password: "" }}
+            initialValues={{
+              username: "",
+              first_name: "",
+              last_name: "",
+              email: "",
+              image: "",
+              bio: "",
+              password: "",
+              password2: "",
+            }}
             validationSchema={registerSchemas}
             onSubmit={(values, actions) => {
-              setTimeout(() => {
-                actions.setSubmitting(false);
-              }, 400);
+              register(values);
+              actions.setSubmitting(false);
+              actions.resetForm()
             }}
             component={(props) => <RegisterForm {...props} />}
           ></Formik>
