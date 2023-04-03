@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Home from "../pages/Home";
 import About from "../pages/About";
@@ -13,7 +13,7 @@ import NotFound from "../pages/NotFound";
 
 const AppRouter = () => {
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -28,7 +28,7 @@ const AppRouter = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
-    </>
+    </BrowserRouter>
   );
 };
 

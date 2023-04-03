@@ -12,8 +12,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useState } from 'react';
-import TravelIcon from '../assets/TravelIcon';
-import logo from "../assets/logo2.png"
+// import TravelIcon from '../assets/TravelIcon';
+// import logo from "../assets/logo2.png"
 
 const pages = ['Dashboard', 'New Blog', "About"];
 const settings = ['My Blogs', 'Profile', 'Logout'];
