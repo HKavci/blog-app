@@ -4,53 +4,42 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Formik } from "formik";
 import LoginForm, { loginSchemas } from "../components/LoginForm";
-
-const theme = createTheme();
+import useAuthCall from "../hooks/useAuthCall";
 
 export default function Login() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  const { login } = useAuthCall();
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <Formik
+          initialValues={{ username: "", email: "", password: "" }}
+          validationSchema={loginSchemas}
+          onSubmit={(values, actions) => {
+            login(values);
+            actions.resetForm();
+            actions.setSubmitting(false);
+            console.log(values);
           }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Formik
-            initialValues={{ email: "", password: "" }}
-            validationSchema={loginSchemas}
-            onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
-            }}
-            component={(props) => <LoginForm {...props} />}
-          ></Formik>
-        </Box>
-      </Container>
-    </ThemeProvider>
+          component={(props) => <LoginForm {...props} />}
+        ></Formik>
+      </Box>
+    </Container>
   );
 }
