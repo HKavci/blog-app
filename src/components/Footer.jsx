@@ -1,6 +1,5 @@
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
-
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
 
 function Copyright(props) {
   return (
@@ -21,8 +20,11 @@ function Copyright(props) {
 }
 
 const Footer = () => {
-  return <Copyright sx={{ mt: 8, mb: 4 }} />
-  
-}
+  return (
+    <>
+      <Copyright sx={{ mt: 8, mb: 4 }} />
+    </>
+  );
+};
 
-export default Footer
+export default Footer;
