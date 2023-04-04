@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  title: "",
-  content: "",
-  image: "",
-  category: "",
-  status: "",
+  myblogs: [],
+  blogs: [],
+  details: [],
+  categories: [],
   loading: false,
 };
 
@@ -20,9 +19,13 @@ const blogSlice = createSlice({
       state.loading = false;
       state[url] = data;
     },
+    postNewBlogSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.myblogs = payload
+    },
   },
 });
 
-export const {fetchStart, getSuccess} = blogSlice.actions;
+export const { fetchStart, getSuccess, postNewBlogSuccess } = blogSlice.actions;
 
 export default blogSlice.reducer;
