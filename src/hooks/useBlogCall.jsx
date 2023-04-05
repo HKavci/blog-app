@@ -2,6 +2,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchStart,
+  getMyBlogsSuccess,
   getBlogsSuccess,
   postNewBlogSuccess,
 } from "../features/blogSlice";
@@ -9,15 +10,28 @@ import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 
 const useBlogCall = () => {
   const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.auth);
+  const { token, userId } = useSelector((state) => state.auth);
 
   const BASE_URL = "http://32240.fullstack.clarusway.com/";
 
-  const getAllBlogs = async () => {
+  const getBlogs = async () => {
     dispatch(fetchStart());
     try {
       const { data } = await axios(`${BASE_URL}api/blogs`);
       dispatch(getBlogsSuccess(data));
+    } catch (error) {
+      console.log(error);
+      toastErrorNotify("Something went wrong");
+    }
+  };
+
+  const getMyBlogs = async () => {
+    dispatch(fetchStart());
+    try {
+      const { data } = await axios(`${BASE_URL}api/blogs/?author=${userId}`, {
+        headers: { Authorization: `Token ${token}` },
+      });
+      dispatch(getMyBlogsSuccess(data));
     } catch (error) {
       console.log(error);
       toastErrorNotify("Something went wrong");
@@ -38,7 +52,7 @@ const useBlogCall = () => {
     }
   };
 
-  return { getAllBlogs, addNewBlog };
+  return { getBlogs, getMyBlogs, addNewBlog };
 };
 
 export default useBlogCall;

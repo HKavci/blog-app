@@ -23,6 +23,10 @@ const blogSlice = createSlice({
       state.loading = false;
       state.blogs = payload;
     },
+    getMyBlogsSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.myblogs = payload;
+    },
     postNewBlogSuccess: (state, { payload }) => {
       state.loading = false;
       state.myblogs = payload;
@@ -30,7 +34,12 @@ const blogSlice = createSlice({
   },
 });
 
-export const { fetchStart, getSuccess, postNewBlogSuccess, getBlogsSuccess } =
-  blogSlice.actions;
+export const {
+  fetchStart,
+  getSuccess,
+  postNewBlogSuccess,
+  getBlogsSuccess,
+  getMyBlogsSuccess,
+} = blogSlice.actions;
 
 export default blogSlice.reducer;

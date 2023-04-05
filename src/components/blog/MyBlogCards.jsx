@@ -7,9 +7,8 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import InsertCommentIcon from "@mui/icons-material/InsertComment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Link } from "react-router-dom";
 
-const BlogCard = ({
+const MyBlogCards = ({
   author,
   comments,
   content,
@@ -76,4 +75,4 @@ const BlogCard = ({
   );
 };
 
-export default BlogCard;
+export default MyBlogCards;

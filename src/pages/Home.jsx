@@ -6,13 +6,11 @@ import BlogCard from "../components/blog/BlogCard";
 
 const Home = () => {
   const { blogs } = useSelector((state) => state.blog);
-  const { getAllBlogs } = useBlogCall();
+  const { getBlogs } = useBlogCall();
 
   useEffect(() => {
-    getAllBlogs();
+    getBlogs();
   }, []);
-
-  console.log(blogs);
 
   return (
     <Container
@@ -27,6 +25,7 @@ const Home = () => {
       {blogs.map((card) => {
         const {
           author,
+          comments,
           content,
           id,
           image,
@@ -40,6 +39,7 @@ const Home = () => {
             key={id}
             author={author}
             content={content}
+            comments={comments}
             image={image}
             likes={likes}
             post_views={post_views}
