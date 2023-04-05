@@ -5,7 +5,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Formik } from "formik";
-import RegisterForm, { registerSchemas } from "../components/RegisterForm";
+import RegisterForm, { registerSchemas } from "../components/auth/RegisterForm";
 import useAuthCall from "../hooks/useAuthCall";
 
 export default function Register() {

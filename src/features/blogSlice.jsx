@@ -19,13 +19,18 @@ const blogSlice = createSlice({
       state.loading = false;
       state[url] = data;
     },
+    getBlogsSuccess: (state, { payload }) => {
+      state.loading = false;
+      state.blogs = payload;
+    },
     postNewBlogSuccess: (state, { payload }) => {
       state.loading = false;
-      state.myblogs = payload
+      state.myblogs = payload;
     },
   },
 });
 
-export const { fetchStart, getSuccess, postNewBlogSuccess } = blogSlice.actions;
+export const { fetchStart, getSuccess, postNewBlogSuccess, getBlogsSuccess } =
+  blogSlice.actions;
 
 export default blogSlice.reducer;

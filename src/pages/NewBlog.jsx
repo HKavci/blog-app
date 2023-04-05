@@ -1,6 +1,6 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import { Formik } from "formik";
-import BlogForm from "../components/BlogForm";
+import BlogForm from "../components/blog/BlogForm";
 import useBlogCall from "../hooks/useBlogCall";
 
 const NewBlog = () => {
@@ -39,7 +39,7 @@ const NewBlog = () => {
               addNewBlog(values);
               console.log(values);
               actions.setSubmitting(false);
-              // actions.resetForm();
+              actions.resetForm();
             }}
             component={(props) => <BlogForm {...props} />}
           ></Formik>

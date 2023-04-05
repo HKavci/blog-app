@@ -5,7 +5,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Formik } from "formik";
-import LoginForm, { loginSchemas } from "../components/LoginForm";
+import LoginForm, { loginSchemas } from "../components/auth/LoginForm";
 import useAuthCall from "../hooks/useAuthCall";
 
 export default function Login() {
