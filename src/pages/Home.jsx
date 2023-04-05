@@ -22,7 +22,7 @@ const Home = () => {
         gap: 3,
       }}
     >
-      {blogs.map((card) => {
+      {blogs?.map((card) => {
         const {
           author,
           comments,

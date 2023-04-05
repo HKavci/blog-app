@@ -24,7 +24,7 @@ const MyBlogs = () => {
         gap: 3,
       }}
     >
-      {myblogs.map((blog) => {
+      {myblogs?.map((blog) => {
         const {
           author,
           comments,
