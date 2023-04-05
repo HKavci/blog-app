@@ -17,9 +17,10 @@ import { useSelector } from "react-redux";
 // import TravelIcon from '../assets/TravelIcon';
 // import logo from "../assets/logo2.png"
 import useAuthCall from "./../hooks/useAuthCall";
+import { light } from "@mui/material/styles/createPalette";
 
 const Navbar = () => {
-  const { currentUser } = useSelector((state) => state.auth);
+  const { currentUser, profile } = useSelector((state) => state.auth);
   const { logout } = useAuthCall();
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -169,7 +170,10 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Typography mr={1} sx={{color: "white"}}>
+                  <b>{currentUser}</b>
+                </Typography>
+                <Avatar alt="Remy Sharp" src={profile.image} sx={{border: "1px solid black"}} />
               </IconButton>
             </Tooltip>
             <Menu
