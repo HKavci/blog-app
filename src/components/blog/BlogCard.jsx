@@ -66,15 +66,15 @@ const BlogCard = ({
               <InsertCommentIcon />
               <VisibilityIcon />
             </Typography>
-            <>
+            <Link to={`/details/${id}`}>
               <Button
                 component="div"
                 variant="contained"
-                onClick={() => navigate(`/details/${id}`)}
+                // onClick={() => navigate(`/details/${id}`)}
               >
                 Details
               </Button>
-            </>
+            </Link>
           </List>
         </CardContent>
       </CardActionArea>

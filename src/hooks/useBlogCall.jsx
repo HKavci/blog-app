@@ -5,6 +5,7 @@ import {
   getMyBlogsSuccess,
   getBlogsSuccess,
   postNewBlogSuccess,
+  getOneBlogSuccess,
 } from "../features/blogSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 
@@ -38,6 +39,19 @@ const useBlogCall = () => {
     }
   };
 
+  const getOneBlog = async (id) => {
+    dispatch(fetchStart())
+    try {
+      const {data} = await axios(`${BASE_URL}api/blogs/${id}`, {
+        headers: { Authorization: `Token ${token}` },
+      })
+      dispatch(getOneBlogSuccess(data))
+    } catch (error) {
+      console.log(error)
+      toastErrorNotify("Something went wrong");
+    }
+  }
+
   const addNewBlog = async (info) => {
     dispatch(fetchStart());
     try {
@@ -52,7 +66,7 @@ const useBlogCall = () => {
     }
   };
 
-  return { getBlogs, getMyBlogs, addNewBlog };
+  return { getBlogs, getMyBlogs, getOneBlog, addNewBlog };
 };
 
 export default useBlogCall;
