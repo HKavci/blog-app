@@ -7,18 +7,20 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import InsertCommentIcon from "@mui/icons-material/InsertComment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const BlogCard = ({
   author,
   comments,
   content,
   image,
+  id,
   likes,
   post_views,
   publish_date,
   title,
 }) => {
+  const navigate = useNavigate();
   const date = new Date(publish_date).toLocaleString();
 
   return (
@@ -65,7 +67,11 @@ const BlogCard = ({
               <VisibilityIcon />
             </Typography>
             <>
-              <Button component="div" variant="contained">
+              <Button
+                component="div"
+                variant="contained"
+                onClick={() => navigate(`/details/${id}`)}
+              >
                 Details
               </Button>
             </>

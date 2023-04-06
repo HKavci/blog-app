@@ -37,6 +37,7 @@ const Home = () => {
         return (
           <BlogCard
             key={id}
+            id={id}
             author={author}
             content={content}
             comments={comments}

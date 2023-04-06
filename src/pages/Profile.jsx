@@ -2,30 +2,30 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import { Box, CardActionArea } from "@mui/material";
 import { useSelector } from "react-redux";
+import { AddBoxOutlined } from "@mui/icons-material";
 
 const Profile = () => {
   const { profile } = useSelector((state) => state.auth);
   const { bio, email, first_name, image, last_name, username } = profile;
 
-  console.log(profile);
 
   return (
-    <Typography
+    <Box 
       sx={{
         display: "flex",
         height: "100vh",
         justifyContent: "center",
         alignItems: "center",
-        
+       
       }}
     >
       <Card sx={{ maxWidth: 600, border: "3px solid black" }}>
         <CardActionArea>
-          <CardMedia component="img" height="400" image={image} alt="image" />
+          <CardMedia component="img" maxheight="400" image={image} alt="image" />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography gutterBottom variant="h5" >
               {first_name} {last_name}
             </Typography>
             <Typography variant="body2" color="text.secondary">
@@ -40,7 +40,7 @@ const Profile = () => {
           </CardContent>
         </CardActionArea>
       </Card>
-    </Typography>
+    </Box>
   );
 };
 

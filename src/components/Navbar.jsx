@@ -173,7 +173,7 @@ const Navbar = () => {
                 <Typography mr={1} sx={{color: "white"}}>
                   <b>{currentUser}</b>
                 </Typography>
-                <Avatar alt="Remy Sharp" src={profile.image} sx={{border: "1px solid black"}} />
+                <Avatar alt="Remy Sharp" src={profile.image} sx={{border: "2px solid gray"}} />
               </IconButton>
             </Tooltip>
             <Menu
