@@ -39,8 +39,7 @@ const Details = () => {
     getOneBlog(id);
   }, []);
 
-  console.log(oneblog);
-  console.log(id);
+
 
   return (
     <Box>

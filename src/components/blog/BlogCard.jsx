@@ -2,12 +2,13 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, List } from "@mui/material";
+import { Box, Button, CardActionArea, List } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import InsertCommentIcon from "@mui/icons-material/InsertComment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Link, useNavigate } from "react-router-dom";
+import useBlogCall from "../../hooks/useBlogCall";
 
 const BlogCard = ({
   author,
@@ -20,8 +21,11 @@ const BlogCard = ({
   publish_date,
   title,
 }) => {
+  const { addLike } = useBlogCall();
   const navigate = useNavigate();
   const date = new Date(publish_date).toLocaleString();
+
+  // console.log(id);
 
   return (
     <Card sx={{ width: 300, height: 570 }}>
@@ -61,17 +65,22 @@ const BlogCard = ({
               marginTop: 2,
             }}
           >
-            <Typography>
-              <FavoriteIcon />
-              <InsertCommentIcon />
-              <VisibilityIcon />
-            </Typography>
+            <Box sx={{ display: "flex", gap: 1 }}>
+              <FavoriteIcon
+                sx={{ color: () => (likes ? "red" : "gray") }}
+                onClick={() => addLike(id)}
+              />
+              <Typography>{likes}</Typography>
+            </Box>
+            <Box>
+              <InsertCommentIcon color="disabled" />
+            </Box>
+            <Box>
+              <VisibilityIcon color="disabled" />
+            </Box>
+
             <Link to={`/details/${id}`}>
-              <Button
-                component="div"
-                variant="contained"
-                // onClick={() => navigate(`/details/${id}`)}
-              >
+              <Button component="div" variant="contained">
                 Details
               </Button>
             </Link>

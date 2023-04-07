@@ -40,17 +40,17 @@ const useBlogCall = () => {
   };
 
   const getOneBlog = async (id) => {
-    dispatch(fetchStart())
+    dispatch(fetchStart());
     try {
-      const {data} = await axios(`${BASE_URL}api/blogs/${id}`, {
+      const { data } = await axios(`${BASE_URL}api/blogs/${id}`, {
         headers: { Authorization: `Token ${token}` },
-      })
-      dispatch(getOneBlogSuccess(data))
+      });
+      dispatch(getOneBlogSuccess(data));
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toastErrorNotify("Something went wrong");
     }
-  }
+  };
 
   const addNewBlog = async (info) => {
     dispatch(fetchStart());
@@ -66,7 +66,19 @@ const useBlogCall = () => {
     }
   };
 
-  return { getBlogs, getMyBlogs, getOneBlog, addNewBlog };
+  const addLike = async (id) => {
+    try {
+      await axios.post(`${BASE_URL}api/likes/${id}/`, {}, {
+        headers: { Authorization: `Token ${token}` }
+      });
+      getBlogs();
+    } catch (error) {
+      console.log(error);
+      toastErrorNotify("Like cannot be performed");
+    }
+  };
+
+  return { getBlogs, getMyBlogs, getOneBlog, addNewBlog, addLike };
 };
 
 export default useBlogCall;
