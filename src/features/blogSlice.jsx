@@ -32,10 +32,6 @@ const blogSlice = createSlice({
       state.loading = false;
       state.oneblog = payload;
     },
-    postLikeSuccess: (state, { payload }) => {
-      state.loading = false;
-      
-    },
     postNewBlogSuccess: (state, { payload }) => {
       state.loading = false;
       state.myblogs = payload;

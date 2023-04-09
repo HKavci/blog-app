@@ -15,6 +15,7 @@ const useBlogCall = () => {
 
   const BASE_URL = "http://32240.fullstack.clarusway.com/";
 
+  //----------------------GET--------------------------------
   const getBlogs = async () => {
     dispatch(fetchStart());
     try {
@@ -52,6 +53,7 @@ const useBlogCall = () => {
     }
   };
 
+  //-----------------------POST / ADD --------------------
   const addNewBlog = async (info) => {
     dispatch(fetchStart());
     try {
@@ -68,9 +70,13 @@ const useBlogCall = () => {
 
   const addLike = async (id) => {
     try {
-      await axios.post(`${BASE_URL}api/likes/${id}/`, {}, {
-        headers: { Authorization: `Token ${token}` }
-      });
+      await axios.post(
+        `${BASE_URL}api/likes/${id}/`,
+        {},
+        {
+          headers: { Authorization: `Token ${token}` },
+        }
+      );
       getBlogs();
     } catch (error) {
       console.log(error);
@@ -78,7 +84,20 @@ const useBlogCall = () => {
     }
   };
 
-  return { getBlogs, getMyBlogs, getOneBlog, addNewBlog, addLike };
+  const addComment = async (id, comment) => {
+    try {
+      await axios.post(`${BASE_URL}api/comments/${id}/`, comment, {
+        headers: { Authorization: `Token ${token}` }
+      });
+      toastSuccessNotify("Comment created successfully");
+      getOneBlog(id);
+    } catch (error) {
+      console.log(error);
+      toastErrorNotify("Comment cannot be sent");
+    }
+  };
+
+  return { getBlogs, getMyBlogs, getOneBlog, addNewBlog, addLike, addComment };
 };
 
 export default useBlogCall;

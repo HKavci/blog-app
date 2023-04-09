@@ -26,6 +26,7 @@ const Home = () => {
         const {
           author,
           comments,
+          comment_count,
           content,
           id,
           image,
@@ -41,6 +42,7 @@ const Home = () => {
             author={author}
             content={content}
             comments={comments}
+            comment_count={comment_count}
             image={image}
             likes={likes}
             post_views={post_views}

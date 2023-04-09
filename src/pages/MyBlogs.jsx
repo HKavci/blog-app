@@ -27,7 +27,7 @@ const MyBlogs = () => {
       {myblogs?.map((blog) => {
         const {
           author,
-          comments,
+          comment_count,
           content,
           id,
           image,
@@ -39,8 +39,9 @@ const MyBlogs = () => {
         return (
           <MyBlogCards
             key={id}
+            id={id}
             author={author}
-            comments={comments}
+            comment_count={comment_count}
             content={content}
             image={image}
             likes={likes}
