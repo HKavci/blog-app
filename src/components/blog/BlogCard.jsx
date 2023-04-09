@@ -2,7 +2,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Box, Button, CardActionArea, List } from "@mui/material";
+import { Box, Button, List } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import InsertCommentIcon from "@mui/icons-material/InsertComment";

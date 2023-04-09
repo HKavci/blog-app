@@ -8,14 +8,17 @@ import {
   getOneBlogSuccess,
 } from "../features/blogSlice";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
+import { useNavigate } from "react-router-dom";
 
 const useBlogCall = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const { token, userId } = useSelector((state) => state.auth);
 
   const BASE_URL = "http://32240.fullstack.clarusway.com/";
 
   //----------------------GET--------------------------------
+
   const getBlogs = async () => {
     dispatch(fetchStart());
     try {
@@ -54,6 +57,7 @@ const useBlogCall = () => {
   };
 
   //-----------------------POST / ADD --------------------
+
   const addNewBlog = async (info) => {
     dispatch(fetchStart());
     try {
@@ -87,7 +91,7 @@ const useBlogCall = () => {
   const addComment = async (id, comment) => {
     try {
       await axios.post(`${BASE_URL}api/comments/${id}/`, comment, {
-        headers: { Authorization: `Token ${token}` }
+        headers: { Authorization: `Token ${token}` },
       });
       toastSuccessNotify("Comment created successfully");
       getOneBlog(id);
@@ -97,7 +101,31 @@ const useBlogCall = () => {
     }
   };
 
-  return { getBlogs, getMyBlogs, getOneBlog, addNewBlog, addLike, addComment };
+  //-------------------DELETE----------------
+
+  const deleteBlog = async (id) => {
+    try {
+      await axios.delete(`${BASE_URL}api/blogs/${id}`, {
+        headers: { Authorization: `Token ${token}` },
+      });
+      toastSuccessNotify("Blog deleted successfully");
+      getBlogs();
+      navigate(-1)
+    } catch (error) {
+      console.log(error);
+      toastErrorNotify("Blog could not be deleted");
+    }
+  };
+
+  return {
+    getBlogs,
+    getMyBlogs,
+    getOneBlog,
+    addNewBlog,
+    addLike,
+    addComment,
+    deleteBlog,
+  };
 };
 
 export default useBlogCall;

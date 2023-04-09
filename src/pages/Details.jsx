@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Card,
   CardActionArea,
   CardContent,
@@ -18,8 +19,9 @@ import { useParams } from "react-router-dom";
 import CommentBox from "../components/blog/CommentBox";
 
 const Details = () => {
-  const { getOneBlog, addLike } = useBlogCall();
+  const { getOneBlog, addLike, deleteBlog } = useBlogCall();
   const { oneblog } = useSelector((state) => state.blog);
+  const { currentUser } = useSelector((state) => state.auth);
   const { id } = useParams();
   const [comment, setComment] = useState(false);
 
@@ -35,7 +37,7 @@ const Details = () => {
     title,
   } = oneblog;
 
-  const date = new Date(publish_date).toLocaleString().slice(0,16);
+  const date = new Date(publish_date).toLocaleString().slice(0, 16);
 
   useEffect(() => {
     getOneBlog(id);
@@ -109,6 +111,23 @@ const Details = () => {
               <Typography>{post_views}</Typography>
             </Box>
           </List>
+          {author === currentUser && (
+            <List
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-around",
+                marginTop: 2,
+              }}
+            >
+              <Button variant="contained" color="success">
+                UPDATE BLOG
+              </Button>
+              <Button variant="contained" color="error" onClick={()=>deleteBlog(id)}>
+                DELETE BLOG
+              </Button>
+            </List>
+          )}
           <Box>
             {comment === true && <CommentBox comments={comments} id={id} />}
           </Box>
