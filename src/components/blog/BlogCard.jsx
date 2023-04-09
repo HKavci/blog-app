@@ -10,19 +10,20 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Link } from "react-router-dom";
 import useBlogCall from "../../hooks/useBlogCall";
 
-const BlogCard = ({
-  author,
-  comment_count,
-  content,
-  image,
-  id,
-  likes,
-  post_views,
-  publish_date,
-  title,
-}) => {
+const BlogCard = ({ card }) => {
   const { addLike } = useBlogCall();
-  const date = new Date(publish_date).toLocaleString().slice(0,16);
+  const {
+    author,
+    comment_count,
+    content,
+    id,
+    image,
+    likes,
+    post_views,
+    publish_date,
+    title,
+  } = card;
+  const date = new Date(publish_date).toLocaleString().slice(0, 16);
 
   return (
     <Card sx={{ width: 300, height: 570 }}>
@@ -30,20 +31,35 @@ const BlogCard = ({
         <CardMedia
           component="img"
           height="300"
-          image={image}
-          alt="image"
-          sx={{ border: "1px solid black" }}
+          sx={{
+            borderBottom: "1px solid gray",
+            backgroundImage: `url(${image})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
         />
       </Typography>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          sx={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitLineClamp: "1",
+            WebkitBoxOrient: "vertical",
+          }}
+        >
           {title}
         </Typography>
         <Typography
           variant="body2"
           color="text.secondary"
           sx={{
-            maxHeight: 60,
+            height: 60,
             overflow: "hidden",
             textOverflow: "ellipsis",
             display: "-webkit-box",
@@ -65,7 +81,7 @@ const BlogCard = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "space-around",
-            marginTop: 2,
+            marginTop: 1,
           }}
         >
           <Box sx={{ display: "flex", gap: 1 }}>

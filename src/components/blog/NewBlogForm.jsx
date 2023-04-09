@@ -1,7 +1,7 @@
 import { Box, Button, MenuItem, TextField } from "@mui/material";
 import { Form } from "formik";
 
-const BlogForm = ({ values, handleChange }) => {
+const NewBlogForm = ({ values, handleChange }) => {
   return (
     <Form>
       <Box>
@@ -90,4 +90,4 @@ const BlogForm = ({ values, handleChange }) => {
   );
 };
 
-export default BlogForm;
+export default NewBlogForm;

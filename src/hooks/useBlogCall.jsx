@@ -101,6 +101,21 @@ const useBlogCall = () => {
     }
   };
 
+  //-------------------UPDATE----------------
+
+  const updateBlog = async (id, info) => {
+    try {
+      await axios.put(`${BASE_URL}api/blogs/${id}`, info, {
+        headers: { Authorization: `Token ${token}` },
+      })
+      getOneBlog(id)
+      toastSuccessNotify("Blog successfully updated")
+    } catch (error) {
+      console.log(error);
+      toastErrorNotify("Error updating blog")
+    }
+  }
+
   //-------------------DELETE----------------
 
   const deleteBlog = async (id) => {
@@ -125,6 +140,7 @@ const useBlogCall = () => {
     addLike,
     addComment,
     deleteBlog,
+    updateBlog
   };
 };
 

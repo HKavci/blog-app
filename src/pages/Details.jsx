@@ -2,10 +2,10 @@ import {
   Box,
   Button,
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
   List,
+  Modal,
   Typography,
 } from "@mui/material";
 import { useSelector } from "react-redux";
@@ -17,6 +17,7 @@ import InsertCommentIcon from "@mui/icons-material/InsertComment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useParams } from "react-router-dom";
 import CommentBox from "../components/blog/CommentBox";
+import { AddBoxOutlined } from "@mui/icons-material";
 
 const Details = () => {
   const { getOneBlog, addLike, deleteBlog } = useBlogCall();
@@ -24,6 +25,7 @@ const Details = () => {
   const { currentUser } = useSelector((state) => state.auth);
   const { id } = useParams();
   const [comment, setComment] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const {
     author,
@@ -49,10 +51,15 @@ const Details = () => {
         <Typography>
           <CardMedia
             component="img"
-            height="300"
-            image={image}
-            alt="image"
-            sx={{ border: "1px solid black" }}
+            height="400"
+            width="600"
+            sx={{
+              borderBottom: "1px solid gray",
+              backgroundImage: `url(${image})`,
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+            }}
           />
         </Typography>
         <CardContent>
@@ -120,10 +127,23 @@ const Details = () => {
                 marginTop: 2,
               }}
             >
-              <Button variant="contained" color="success">
-                UPDATE BLOG
-              </Button>
-              <Button variant="contained" color="error" onClick={()=>deleteBlog(id)}>
+              <div>
+                <Button
+                  variant="contained"
+                  color="success"
+                  // onClick={() => setOpen(!open)}
+                >
+                  UPDATE BLOG
+                </Button>
+              </div>
+
+              <Button
+                variant="contained"
+                color="error"
+                onClick={() => {
+                  deleteBlog(id);
+                }}
+              >
                 DELETE BLOG
               </Button>
             </List>

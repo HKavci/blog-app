@@ -23,33 +23,7 @@ const Home = () => {
       }}
     >
       {blogs?.map((card) => {
-        const {
-          author,
-          comments,
-          comment_count,
-          content,
-          id,
-          image,
-          likes,
-          post_views,
-          publish_date,
-          title,
-        } = card;
-        return (
-          <BlogCard
-            key={id}
-            id={id}
-            author={author}
-            content={content}
-            comments={comments}
-            comment_count={comment_count}
-            image={image}
-            likes={likes}
-            post_views={post_views}
-            publish_date={publish_date}
-            title={title}
-          />
-        );
+        return <BlogCard key={card.id} card={card} />;
       })}
     </Container>
   );
