@@ -9,9 +9,11 @@ import InsertCommentIcon from "@mui/icons-material/InsertComment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Link } from "react-router-dom";
 import useBlogCall from "../../hooks/useBlogCall";
+import { useSelector } from "react-redux";
 
 const BlogCard = ({ card }) => {
   const { addLike } = useBlogCall();
+  const { userId } = useSelector((state) => state.auth);
   const {
     author,
     comment_count,
@@ -19,11 +21,17 @@ const BlogCard = ({ card }) => {
     id,
     image,
     likes,
+    likes_n,
     post_views,
     publish_date,
     title,
   } = card;
   const date = new Date(publish_date).toLocaleString().slice(0, 16);
+
+  let isLikedByUser = false;
+  if (likes_n && likes_n.length > 0) {
+    isLikedByUser = likes_n.some((like) => like.user_id === userId);
+  }
 
   return (
     <Card sx={{ width: 300, height: 570 }}>
@@ -86,7 +94,10 @@ const BlogCard = ({ card }) => {
         >
           <Box sx={{ display: "flex", gap: 1 }}>
             <FavoriteIcon
-              sx={{ cursor: "pointer", color: () => (likes ? "red" : "gray") }}
+              sx={{
+                cursor: "pointer",
+                color: () => (isLikedByUser && likes ? "red" : "gray"),
+              }}
               onClick={() => addLike(id)}
             />
             <Typography>{likes}</Typography>
