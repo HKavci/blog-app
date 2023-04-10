@@ -117,7 +117,7 @@ const RegisterForm = ({
               label="Image"
               name="image"
               onChange={handleChange}
-              value={values.image || defaultImage}
+              defaultValue={values.image || defaultImage || ""}
             />
           </Grid>
           <Grid item xs={12}>
@@ -128,7 +128,7 @@ const RegisterForm = ({
               label="Bio"
               name="bio"
               onChange={handleChange}
-              value={values.bio || defaultBio}
+              defaultValue={values.bio || defaultBio || ""}
             />
           </Grid>
           <Grid item xs={12}>
