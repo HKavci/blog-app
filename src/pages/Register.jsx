@@ -45,7 +45,6 @@ export default function Register() {
             register(values);
             actions.setSubmitting(false);
             actions.resetForm();
-            console.log(values);
           }}
           component={(props) => <RegisterForm {...props} />}
         ></Formik>
