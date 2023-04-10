@@ -17,7 +17,8 @@ import InsertCommentIcon from "@mui/icons-material/InsertComment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useParams } from "react-router-dom";
 import CommentBox from "../components/blog/CommentBox";
-import { AddBoxOutlined } from "@mui/icons-material";
+import UpdateModal from "../components/blog/UpdateModal";
+import { Formik } from "formik";
 
 const Details = () => {
   const { getOneBlog, addLike, deleteBlog } = useBlogCall();
@@ -40,6 +41,9 @@ const Details = () => {
   } = oneblog;
 
   const date = new Date(publish_date).toLocaleString().slice(0, 16);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     getOneBlog(id);
@@ -118,6 +122,33 @@ const Details = () => {
               <Typography>{post_views}</Typography>
             </Box>
           </List>
+          {/* <Formik
+                initialValues={{
+                  title: "",
+                  content: "",
+                  image: "",
+                  category: "",
+                  status: "",
+                  slug: "",
+                }}
+                onSubmit={(values, actions) => {
+                  updateBlog(values, id);
+                  console.log(values, id);
+                  actions.setSubmitting(false);
+                  // actions.resetForm();
+                }}
+                component={(props) => (
+                  <UpdateModal
+                    {...props}
+                    open={open}
+                    handleClose={handleClose}
+                    id={id}
+                  />
+                )}
+              ></Formik> */}
+
+          <UpdateModal open={open} handleClose={handleClose} id={id} />
+
           {author === currentUser && (
             <List
               sx={{
@@ -127,15 +158,15 @@ const Details = () => {
                 marginTop: 2,
               }}
             >
-              <div>
+   
                 <Button
                   variant="contained"
                   color="success"
-                  // onClick={() => setOpen(!open)}
+                  onClick={handleOpen}
                 >
                   UPDATE BLOG
                 </Button>
-              </div>
+       
 
               <Button
                 variant="contained"
@@ -146,6 +177,7 @@ const Details = () => {
               >
                 DELETE BLOG
               </Button>
+              
             </List>
           )}
           <Box>

@@ -105,7 +105,7 @@ const useBlogCall = () => {
 
   const updateBlog = async (id, info) => {
     try {
-      await axios.put(`${BASE_URL}api/blogs/${id}`, info, {
+      await axios.put(`${BASE_URL}api/blogs/${id}/`, info, {
         headers: { Authorization: `Token ${token}` },
       })
       getOneBlog(id)

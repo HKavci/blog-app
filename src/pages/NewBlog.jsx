@@ -41,7 +41,6 @@ const NewBlog = () => {
             }}
             onSubmit={(values, actions) => {
               addNewBlog(values);
-              console.log(values);
               actions.setSubmitting(false);
               actions.resetForm();
             }}
