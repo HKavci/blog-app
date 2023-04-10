@@ -51,9 +51,6 @@ const RegisterForm = ({
   const handleTogglePasswordVisibility2 = () =>
     setShowPassword2((show) => !show);
 
-  const defaultImage = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
-  const defaultBio = "User"
-
   return (
     <>
       <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -117,7 +114,7 @@ const RegisterForm = ({
               label="Image"
               name="image"
               onChange={handleChange}
-              defaultValue={values?.image || defaultImage || ""}
+              value={values?.image}
             />
           </Grid>
           <Grid item xs={12}>
@@ -128,7 +125,7 @@ const RegisterForm = ({
               label="Bio"
               name="bio"
               onChange={handleChange}
-              defaultValue={values?.bio || defaultBio || ""}
+              value={values?.bio}
             />
           </Grid>
           <Grid item xs={12}>
