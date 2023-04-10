@@ -5,7 +5,6 @@ import {
   CardContent,
   CardMedia,
   List,
-  Modal,
   Typography,
 } from "@mui/material";
 import { useSelector } from "react-redux";
@@ -18,7 +17,6 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useParams } from "react-router-dom";
 import CommentBox from "../components/blog/CommentBox";
 import UpdateModal from "../components/blog/UpdateModal";
-import { Formik } from "formik";
 
 const Details = () => {
   const { getOneBlog, addLike, deleteBlog } = useBlogCall();
@@ -74,7 +72,6 @@ const Details = () => {
             variant="body2"
             color="text.secondary"
             sx={{
-              maxHeight: 60,
               overflow: "hidden",
               textOverflow: "ellipsis",
             }}
@@ -122,30 +119,6 @@ const Details = () => {
               <Typography>{post_views}</Typography>
             </Box>
           </List>
-          {/* <Formik
-                initialValues={{
-                  title: "",
-                  content: "",
-                  image: "",
-                  category: "",
-                  status: "",
-                  slug: "",
-                }}
-                onSubmit={(values, actions) => {
-                  updateBlog(values, id);
-                  console.log(values, id);
-                  actions.setSubmitting(false);
-                  // actions.resetForm();
-                }}
-                component={(props) => (
-                  <UpdateModal
-                    {...props}
-                    open={open}
-                    handleClose={handleClose}
-                    id={id}
-                  />
-                )}
-              ></Formik> */}
 
           <UpdateModal open={open} handleClose={handleClose} id={id} />
 
@@ -158,15 +131,9 @@ const Details = () => {
                 marginTop: 2,
               }}
             >
-   
-                <Button
-                  variant="contained"
-                  color="success"
-                  onClick={handleOpen}
-                >
-                  UPDATE BLOG
-                </Button>
-       
+              <Button variant="contained" color="success" onClick={handleOpen}>
+                UPDATE BLOG
+              </Button>
 
               <Button
                 variant="contained"
@@ -177,7 +144,6 @@ const Details = () => {
               >
                 DELETE BLOG
               </Button>
-              
             </List>
           )}
           <Box>

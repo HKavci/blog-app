@@ -1,14 +1,13 @@
 import {
   Box,
   Button,
-  FormControl,
-  FormControlLabel,
   MenuItem,
   Modal,
   TextField,
   Typography,
+  useTheme,
 } from "@mui/material";
-import { Form } from "formik";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import useBlogCall from "../../hooks/useBlogCall";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -24,7 +23,7 @@ const UpdateModal = ({ open, handleClose, id }) => {
     status: "",
   });
 
-// Bu şekilde, oneblog state'i değiştiğinde info state'inin de güncellenmesi sağlanacak ve updateBlog fonksiyonuna doğru veriler gönderilecek. Aksi takdirde onchange olmayan kısımları falsy değer alıyordu.
+  // Bu şekilde, oneblog state'i değiştiğinde info state'inin de güncellenmesi sağlanacak ve updateBlog fonksiyonuna doğru veriler gönderilecek. Aksi takdirde onchange olmayan kısımları falsy değer alıyordu.
   useEffect(() => {
     setInfo({
       title: oneblog?.title || "",
@@ -36,12 +35,16 @@ const UpdateModal = ({ open, handleClose, id }) => {
   }, [oneblog]);
 
   const handleChange = (e) => {
-    setInfo(({ ...info, [e.target.name]: e.target.value }));
+    setInfo({ ...info, [e.target.name]: e.target.value });
   };
 
   useEffect(() => {
     getOneBlog(id);
   }, []);
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.only("xs"));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.only("md"));
 
   return (
     <>
@@ -59,6 +62,7 @@ const UpdateModal = ({ open, handleClose, id }) => {
             transform: "translate(-50%, -50%)",
             backgroundColor: "white",
             padding: 4,
+            width: isSmallScreen ? "80vw" : isMediumScreen ? "55vw" : "auto",
           }}
         >
           <Typography variant="h6" color={"blue"} fontFamily={"cursive"}>
@@ -70,7 +74,7 @@ const UpdateModal = ({ open, handleClose, id }) => {
             name="title"
             onChange={handleChange}
             // input değerini tamamen sildiğim anda tüm input içeriği yeniden yükleniyordu. Bunu çözmek için value yerine defaultValue yaptım.
-            defaultValue={info.title || oneblog?.title || ''}
+            defaultValue={info.title || oneblog?.title || ""}
             variant="outlined"
             sx={{ width: "100%", marginTop: "1rem" }}
             required

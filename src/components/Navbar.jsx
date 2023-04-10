@@ -14,10 +14,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import TravelIcon from '../assets/TravelIcon';
-// import logo from "../assets/logo2.png"
 import useAuthCall from "./../hooks/useAuthCall";
-import { light } from "@mui/material/styles/createPalette";
 
 const Navbar = () => {
   const { currentUser, profile } = useSelector((state) => state.auth);
@@ -135,7 +132,7 @@ const Navbar = () => {
               textDecoration: "none",
             }}
           >
-            LOGO
+            Blog
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
@@ -170,10 +167,14 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Typography mr={1} sx={{color: "white"}}>
+                <Typography mr={1} sx={{ color: "white" }}>
                   <b>{currentUser}</b>
                 </Typography>
-                <Avatar alt="Remy Sharp" src={profile.image} sx={{border: "2px solid gray"}} />
+                <Avatar
+                  alt="Remy Sharp"
+                  src={profile.image}
+                  sx={{ border: "2px solid gray" }}
+                />
               </IconButton>
             </Tooltip>
             <Menu

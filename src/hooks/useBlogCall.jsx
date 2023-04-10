@@ -11,7 +11,7 @@ import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 import { useNavigate } from "react-router-dom";
 
 const useBlogCall = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { token, userId } = useSelector((state) => state.auth);
 
@@ -107,14 +107,14 @@ const useBlogCall = () => {
     try {
       await axios.put(`${BASE_URL}api/blogs/${id}/`, info, {
         headers: { Authorization: `Token ${token}` },
-      })
-      getOneBlog(id)
-      toastSuccessNotify("Blog successfully updated")
+      });
+      getOneBlog(id);
+      toastSuccessNotify("Blog successfully updated");
     } catch (error) {
       console.log(error);
-      toastErrorNotify("Error updating blog")
+      toastErrorNotify("Error updating blog");
     }
-  }
+  };
 
   //-------------------DELETE----------------
 
@@ -125,7 +125,7 @@ const useBlogCall = () => {
       });
       toastSuccessNotify("Blog deleted successfully");
       getBlogs();
-      navigate(-1)
+      navigate(-1);
     } catch (error) {
       console.log(error);
       toastErrorNotify("Blog could not be deleted");
@@ -140,7 +140,7 @@ const useBlogCall = () => {
     addLike,
     addComment,
     deleteBlog,
-    updateBlog
+    updateBlog,
   };
 };
 

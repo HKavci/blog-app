@@ -12,8 +12,6 @@ const MyBlogs = () => {
     getMyBlogs();
   }, []);
 
-  console.log(myblogs);
-
   return (
     <Container
       sx={{

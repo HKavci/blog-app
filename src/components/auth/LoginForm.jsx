@@ -24,13 +24,7 @@ export const loginSchemas = object({
     .matches(/[!,?{}><%&$#£+-.]/),
 });
 
-const LoginForm = ({
-  touched,
-  errors,
-  values,
-  handleBlur,
-  handleChange,
-}) => {
+const LoginForm = ({ touched, errors, values, handleBlur, handleChange }) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleTogglePasswordVisibility = () => setShowPassword((show) => !show);
 

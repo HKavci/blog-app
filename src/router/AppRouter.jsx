@@ -9,7 +9,6 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Profile from "../pages/Profile";
 import NewBlog from "../pages/NewBlog";
-import NotFound from "../pages/NotFound";
 import MyBlogs from "../pages/MyBlogs";
 
 const AppRouter = () => {
@@ -27,7 +26,6 @@ const AppRouter = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/newblog" element={<NewBlog />} />
         <Route path="/myblogs" element={<MyBlogs />} />
-        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </BrowserRouter>

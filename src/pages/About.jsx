@@ -12,15 +12,17 @@ const About = () => {
         marginTop: 4,
         backgroundColor: "rgba(0, 0, 0, 0.5)",
         color: "white",
-        padding: 5
+        padding: 5,
       }}
     >
-      <Typography variant="h5" textAlign={"center"} mb={2}>My Travel Blog</Typography>
+      <Typography variant="h5" textAlign={"center"} mb={2}>
+        Explorer's Blog
+      </Typography>
       <Typography>
-        Welcome to my travel blog! My name is Hakan, and I'm a passionate
-        traveler who loves exploring new destinations and experiencing different
-        cultures. I created this blog to share my adventures and provide
-        inspiration for those who share the same passion for travel.{" "}
+        Welcome to my blog! My name is Hakan, and I'm a passionate traveler who
+        loves exploring new destinations and experiencing different cultures. I
+        created this blog to share my adventures and provide inspiration for
+        those who share the same passion for travel.{" "}
       </Typography>
       <Typography>
         On this blog, you'll find a variety of travel-related content, including
@@ -44,6 +46,11 @@ const About = () => {
       <Typography>
         Thank you for visiting my blog, and I hope that you'll join me on my
         journey to discover the world!
+      </Typography>
+      <Typography fontFamily={"cursive"} mt={2} textAlign={"right"} mr={5}>
+        <b>
+          Hakan KAVCI <br /> April 2023
+        </b>
       </Typography>
     </Container>
   );

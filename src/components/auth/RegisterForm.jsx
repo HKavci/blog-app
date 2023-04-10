@@ -183,7 +183,12 @@ const RegisterForm = ({
             />
           </Grid>
         </Grid>
-        <Button fullWidth type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
+        <Button
+          fullWidth
+          type="submit"
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
           Sign Up
         </Button>
         <Grid container justifyContent="center">

@@ -11,7 +11,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Traveller Blog
+        Explorer's Blog
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -20,11 +20,7 @@ function Copyright(props) {
 }
 
 const Footer = () => {
-  return (
-    <>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
-    </>
-  );
+  return <Copyright sx={{ mt: 8, mb: 4 }} />;
 };
 
 export default Footer;
