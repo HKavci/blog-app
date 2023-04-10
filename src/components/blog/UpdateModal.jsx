@@ -53,6 +53,7 @@ const UpdateModal = ({ open, handleClose, id }) => {
         onClose={handleClose}
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
+        sx={{ overflow: "auto" }}
       >
         <Box
           sx={{
