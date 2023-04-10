@@ -172,7 +172,7 @@ const Navbar = () => {
                 </Typography>
                 <Avatar
                   alt="Remy Sharp"
-                  src={profile.image}
+                  src={profile?.image}
                   sx={{ border: "2px solid gray" }}
                 />
               </IconButton>
