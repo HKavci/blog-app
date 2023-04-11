@@ -89,6 +89,7 @@ const useBlogCall = () => {
   };
 
   const addComment = async (id, comment) => {
+    dispatch(fetchStart())
     try {
       await axios.post(`${BASE_URL}api/comments/${id}/`, comment, {
         headers: { Authorization: `Token ${token}` },
@@ -104,6 +105,7 @@ const useBlogCall = () => {
   //-------------------UPDATE----------------
 
   const updateBlog = async (id, info) => {
+    dispatch(fetchStart())
     try {
       await axios.put(`${BASE_URL}api/blogs/${id}/`, info, {
         headers: { Authorization: `Token ${token}` },
@@ -119,6 +121,7 @@ const useBlogCall = () => {
   //-------------------DELETE----------------
 
   const deleteBlog = async (id) => {
+    dispatch(fetchStart())
     try {
       await axios.delete(`${BASE_URL}api/blogs/${id}`, {
         headers: { Authorization: `Token ${token}` },
