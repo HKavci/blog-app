@@ -194,39 +194,52 @@ const Navbar = () => {
               onClose={handleCloseUserMenu}
             >
               {currentUser && (
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography
-                    textAlign="center"
-                    onClick={() => navigate("/myblogs")}
-                  >
-                    My Blogs
-                  </Typography>
-                </MenuItem>
+                <>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography
+                      textAlign="center"
+                      onClick={() => navigate("/myblogs")}
+                    >
+                      My Blogs
+                    </Typography>
+                  </MenuItem>
+
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography
+                      textAlign="center"
+                      onClick={() => navigate("/profile")}
+                    >
+                      Profile
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center" onClick={logout}>
+                      Logout
+                    </Typography>
+                  </MenuItem>
+                </>
               )}
-              {currentUser && (
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography
-                    textAlign="center"
-                    onClick={() => navigate("/profile")}
-                  >
-                    Profile
-                  </Typography>
-                </MenuItem>
+
+              {!currentUser && (
+                <>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography
+                      textAlign="center"
+                      onClick={() => navigate("/login")}
+                    >
+                      Login
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography
+                      textAlign="center"
+                      onClick={() => navigate("/register")}
+                    >
+                      Register
+                    </Typography>
+                  </MenuItem>
+                </>
               )}
-              <MenuItem onClick={handleCloseUserMenu}>
-                {currentUser ? (
-                  <Typography textAlign="center" onClick={logout}>
-                    Logout
-                  </Typography>
-                ) : (
-                  <Typography
-                    textAlign="center"
-                    onClick={() => navigate("/login")}
-                  >
-                    Login
-                  </Typography>
-                )}
-              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
