@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 import useBlogCall from "../hooks/useBlogCall";
 import { useEffect } from "react";
 import BlogCard from "../components/blog/BlogCard";
+import Loader from "../components/Loader";
 
 const MyBlogs = () => {
-  const { myblogs } = useSelector((state) => state.blog);
+  const { myblogs, loading } = useSelector((state) => state.blog);
   const { getMyBlogs } = useBlogCall();
 
   useEffect(() => {
@@ -13,19 +14,25 @@ const MyBlogs = () => {
   }, []);
 
   return (
-    <Container
-      sx={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        marginTop: 3,
-        gap: 3,
-      }}
-    >
-      {myblogs?.map((card) => {
-        return <BlogCard card={card} key={card.id} />;
-      })}
-    </Container>
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Container
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            marginTop: 3,
+            gap: 3,
+          }}
+        >
+          {myblogs?.map((card) => {
+            return <BlogCard card={card} key={card.id} />;
+          })}
+        </Container>
+      )}
+    </>
   );
 };
 

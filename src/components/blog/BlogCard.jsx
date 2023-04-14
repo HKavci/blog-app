@@ -98,7 +98,7 @@ const BlogCard = ({ card }) => {
                 cursor: "pointer",
                 color: () => (isLikedByUser && likes ? "red" : "gray"),
               }}
-              onClick={() => addLike(id)}
+              onClick={(e) => addLike(id)}
             />
             <Typography>{likes}</Typography>
           </Box>
@@ -110,12 +110,13 @@ const BlogCard = ({ card }) => {
             <VisibilityIcon color="disabled" />
             <Typography>{post_views}</Typography>
           </Box>
-
-          <Link to={`/details/${id}`}>
-            <Button component="div" variant="contained">
-              Details
-            </Button>
-          </Link>
+          <Typography
+            component={Link}
+            to={`/details/${id}`}
+            sx={{ textDecoration: "none" }}
+          >
+            <Button variant="contained">Details</Button>
+          </Typography>
         </List>
       </CardContent>
     </Card>
