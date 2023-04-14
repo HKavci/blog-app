@@ -21,7 +21,7 @@ import UpdateModal from "../components/blog/UpdateModal";
 const Details = () => {
   const { getOneBlog, addLike, deleteBlog } = useBlogCall();
   const { oneblog } = useSelector((state) => state.blog);
-  const { currentUser } = useSelector((state) => state.auth);
+  const { currentUser, userId } = useSelector((state) => state.auth);
   const { id } = useParams();
   const [comment, setComment] = useState(false);
   const [open, setOpen] = useState(false);
@@ -33,12 +33,18 @@ const Details = () => {
     content,
     image,
     likes,
+    likes_n,
     post_views,
     publish_date,
     title,
   } = oneblog;
 
   const date = new Date(publish_date).toLocaleString().slice(0, 16);
+
+  let isLikedByUser = false;
+  if (likes_n && likes_n.length > 0) {
+    isLikedByUser = likes_n.some((like) => like.user_id === userId);
+  }
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -97,7 +103,7 @@ const Details = () => {
               <FavoriteIcon
                 sx={{
                   cursor: "pointer",
-                  color: () => (likes ? "red" : "gray"),
+                  color: () => (isLikedByUser && likes ? "red" : "gray"),
                 }}
                 onClick={() => {
                   addLike(id);

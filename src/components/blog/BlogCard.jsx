@@ -12,7 +12,7 @@ import useBlogCall from "../../hooks/useBlogCall";
 import { useSelector } from "react-redux";
 
 const BlogCard = ({ card }) => {
-  const { addLike } = useBlogCall();
+  const { addLike, getLike } = useBlogCall();
   const { userId } = useSelector((state) => state.auth);
   const {
     author,
@@ -98,7 +98,7 @@ const BlogCard = ({ card }) => {
                 cursor: "pointer",
                 color: () => (isLikedByUser && likes ? "red" : "gray"),
               }}
-              onClick={(e) => addLike(id)}
+              onClick={() => addLike(id)}
             />
             <Typography>{likes}</Typography>
           </Box>
